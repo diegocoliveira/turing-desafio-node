@@ -3,13 +3,21 @@ import UserService from "../services/UserService.mjs";
 export default function UserController() {
     const service = new UserService();
 
-    function getAll(req, res) {
-        const users = service.getAll();
+    function get(req, res) {
+        const data = req.query.data;
+        const users = service.get(data);
         res.status(200).json(users);
     }
-
+    
     function getById(req, res) {
-        res.status(200).send("getById");
+        const id = req.params.id;
+        const result = service.get(id);
+        if (result.success) {
+            res.status(200).json(result.data);
+        } else {
+            res.status(400).json({ message: result.message });
+        }
+        
     }
 
     function create(req, res) {
@@ -24,12 +32,25 @@ export default function UserController() {
     }
 
     function update(req, res) {
-        res.status(200).send("update");
+        const id = req.params.id;
+        const data = req.body;
+        const result = service.update(id, data.name, data.email);
+        if (result.success) {
+            res.status(200).json(result.data);
+        } else {
+            res.status(400).json({ message: result.message });
+        }
     }
 
     function remove(req, res) {
-        res.status(200).send("remove");
+        const id = req.params.id;
+        const result = service.remove(id);
+        if (result.success) {
+            res.status(200).json(result.data);
+        } else {
+            res.status(400).json({ message: result.message });
+        }
     }
 
-    return { getAll, getById, create, update, remove };
+    return { get, getById, create, update, remove };
 }

@@ -23,19 +23,46 @@ export default class UserDB {
         return user;
     }
 
-    delete(id) {
-        const user = this.#users.find((user) => user.id === id);
-        if (user) {
-            user.deleted = true; // soft delete
-            this.#writeFile();
-            return true;
+    get(id) {
+        if (id <= this.#users.length && id > 0 && !this.#users[id - 1].deleted) {
+            return this.#users[id - 1];
         }
-        return false;
+        return null;
     }
 
     getAll() {
-        //todo somente usuários ativos
-        return this.#users;
+        const users = this.#users.filter((user) => !user.deleted);
+        return users;
+    }
+
+    search(data) {
+        const users = this.#users.filter((user) => {
+            return (
+                !user.deleted &&
+                (user.name.toLowerCase().includes(data.toLowerCase()) ||
+                user.email.toLowerCase().includes(data.toLowerCase()) )
+            );
+        });
+        return users;
+    }
+
+    update(id, name, email) {
+        if (id <= this.#users.length && id > 0 && !this.#users[id - 1].deleted) {
+            this.#users[id - 1].name = name;
+            this.#users[id - 1].email = email;
+            this.#writeFile();
+            return this.#users[id - 1];
+        }
+        return null;
+    }
+
+    remove(id) {
+        if (id <= this.#users.length && id > 0 && !this.#users[id - 1].deleted) {
+            this.#users[id - 1].deleted = true;
+            this.#writeFile();
+            return this.#users[id - 1];
+        }
+        return null;
     }
 
     #writeFile() {
