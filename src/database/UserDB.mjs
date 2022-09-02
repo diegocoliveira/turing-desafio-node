@@ -1,4 +1,5 @@
-import fs from "fs";
+import fs from "fs/promises";
+import fsExists from "fs.promises.exists";
 import User from "../model/User.mjs";
 
 export default class UserDB {
@@ -6,13 +7,22 @@ export default class UserDB {
     #dataFile;
 
     constructor() {
-        this.#dataFile = new URL("database.json", import.meta.url);
+        this.#load();
+    }
 
-        if (!fs.existsSync(this.#dataFile)) {
-            fs.writeFileSync(this.#dataFile, JSON.stringify([]));
+    async #load() {
+        try {
+            this.#dataFile = new URL("database.json", import.meta.url);
+            const exists = await fsExists(this.#dataFile);
+            if (!exists) {
+                await fs.writeFile(this.#dataFile, JSON.stringify([]));
+            }
+            const data = await fs.readFile(this.#dataFile);
+            this.#users = JSON.parse(data);
+            console.log("Database carregado com sucesso");
+        } catch (error) {
+            console.log("Erro ao carregar database: " + error);
         }
-        const data = fs.readFileSync(this.#dataFile);
-        this.#users = JSON.parse(data);
     }
 
     add(name, email) {
@@ -37,11 +47,7 @@ export default class UserDB {
 
     search(data) {
         const users = this.#users.filter((user) => {
-            return (
-                !user.deleted &&
-                (user.name.toLowerCase().includes(data.toLowerCase()) ||
-                user.email.toLowerCase().includes(data.toLowerCase()) )
-            );
+            return !user.deleted && (user.name.toLowerCase().includes(data.toLowerCase()) || user.email.toLowerCase().includes(data.toLowerCase()));
         });
         return users;
     }
@@ -65,11 +71,11 @@ export default class UserDB {
         return null;
     }
 
-    #writeFile() {
-        fs.writeFile(this.#dataFile, JSON.stringify(this.#users), (err) => {
-            if (err) {
-                console.log("Erro ao escrever no database" + err);
-            }
-        });
+    async #writeFile() {
+        try {
+            fs.writeFile(this.#dataFile, JSON.stringify(this.#users));
+        } catch (error) {
+            console.log("Erro ao escrever no database" + err);
+        }
     }
 }
