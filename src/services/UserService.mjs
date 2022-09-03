@@ -3,6 +3,13 @@ import UserDB from "../database/UserDB.mjs";
 export default function UserService() {
     const userDB = new UserDB();
 
+    function get(data) {
+        if (typeof data === "undefined" || data === null || data === "") {
+            return userDB.getAll();
+        }
+        return userDB.search(data);
+    }
+
     function getById(id) {
         const result = { success: false, message: "Erro ao recuperar o usuário", data: null };
         if (typeof id === "undefined" || id === null || id === "") {
@@ -27,12 +34,7 @@ export default function UserService() {
 
         return result;
     }
-    function get(data) {
-        if (typeof data === "undefined" || data === null || data === "") {
-            return userDB.getAll();
-        }
-        return userDB.search(data);
-    }
+    
 
     function create(name, email) {
         const result = { success: false, message: "Erro ao criar usuário" };

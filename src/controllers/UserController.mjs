@@ -4,6 +4,7 @@ export default function UserController() {
     const service = new UserService();
 
     function get(req, res) {
+        const id = req.params.id;
         const data = req.query.data;
         const users = service.get(data);
         res.status(200).json(users);
@@ -11,7 +12,7 @@ export default function UserController() {
     
     function getById(req, res) {
         const id = req.params.id;
-        const result = service.get(id);
+        const result = service.getById(id);
         if (result.success) {
             res.status(200).json(result.data);
         } else {
