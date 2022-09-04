@@ -10,6 +10,7 @@
   <title>Desafio Servidores</title>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet" />
   <link rel="stylesheet" href="./styles/style.css" />
 </head>
 
@@ -30,27 +31,28 @@
 
     <section id="modal" class="modal">
       <div class="modal-content">
-          <h2 id="modal-title">Incluir Produtos</h2>
+          <h2 id="modal-title">Novo Usuário</h2>
           <form>
-            <input type="hidden" id="txtId" name="id">
             <div style="display: flex; gap:2vw;">
-              <input type="text" id="txtName" placeholder="Nome" />
-              <input type="number" id="txtPrice" placeholder="Valor" />
+              <input type="number" id="txtId" name="id" placeholder="#ID" disabled/>
+              <input type="text" id="txtName" name="name" placeholder="Nome" />
             </div>  
-            <textarea id="txtDescription" placeholder="Descrição"> </textarea>
+            <input type="text" id="txtEmail" name="email" placeholder="E-mail" />
+            <div id="alert-modal" class="alert"> </div>
             <div class="comandos" >
               <button type="button" id="btnSave" class="btn-primary">Salvar</button>
               <button type="button" id="btnCancel" class="btn-alternate">Cancelar</button>
             </div>
-            <div id="alert-modal" class="alert"></div>
+            
           </form>
       </div>
     </section>
 
-    <section id="modal-display" class="modal">
+    <section id="modal-alert" class="modal">
       <div class="modal-content">
-         <div id="product-display"></div>
-        <button type="button" id="btnOK" class="btn-primary">OK</button>
+         <div id="notify"></div>
+        <button type="button" id="btnOK" class="btn-primary">Sim</button>
+        <button type="button" id="btnNOK" class="btn-alternate">Não</button>
       </div>
     </section>
   

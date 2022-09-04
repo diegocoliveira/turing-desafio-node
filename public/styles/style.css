@@ -1,3 +1,10 @@
+/*
+cores: 
+ffab00
+ff8700
+5ED4A2
+222
+*/
 * {
     margin: 0;
     padding: 0;
@@ -30,7 +37,7 @@ main {
 
 .modal {
     position: fixed;
-    background-color: #ffffffbb;
+    background-color: #ffffff99;
     top: 0;
     left: 0;
     width: 100vw;
@@ -41,11 +48,11 @@ main {
 }
 
 .modal-content {
-    background-color: #191a2e;
+    background-color: #222;
     border-radius: 1vw;
     padding: 2vh 0;
-    width: 60vw;
-    min-height: 60vh;
+    width: 50vw;
+    min-height: 45vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -55,9 +62,8 @@ main {
 form,
 #product-display {
     border: 1px solid #5ed4a2;
-    /* border: 1px solid #ffab00; */
-    width: 55vw;
-    min-height: 45vh;
+    width: 45vw;
+    min-height: 30vh;
     padding: 2vh 0;
     display: flex;
     flex-direction: column;
@@ -67,12 +73,12 @@ form,
 }
 
 h1 {
-    font-family: "Barlow Condensed", sans-serif;
-    font-size: 3.5vw;
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 3vw;
     font-weight: 700;
-    /* color: #5ED4A2; */
+
     color: #222;
-    text-shadow: 0.1vw 0.1vw 0 #5ed4a2, -0.1vw -0.1vw 0px #5ed4a2, 0 0 0.5vw #5ed4a2;
+    text-shadow: 0.05vw 0.05vw 0 #5ed4a2, -0.05vw -0.05vw 0px #5ed4a2, 0 0 0.3vw #5ed4a2;
     letter-spacing: 0.5vw;
 }
 
@@ -135,7 +141,6 @@ h2 {
 
 input {
     height: 5vh;
-    width: 15vw;
     color: #ddd;
     font-size: 1.2vmax;
     background-color: transparent;
@@ -145,8 +150,19 @@ input {
     -moz-appearance: textfield;
 }
 
+#txtId {
+    width: 3vw;
+    color: #ff8700;
+    border-bottom-color: #ff8700;
+    text-align: center;
+}
+
 #txtName {
     width: 30vw;
+}
+
+#txtEmail {
+    width: 35vw;
 }
 
 #search {

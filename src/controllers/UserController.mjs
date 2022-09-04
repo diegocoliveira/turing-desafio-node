@@ -26,7 +26,7 @@ export default function UserController() {
         const result = service.create(data.name, data.email);
 
         if (result.success) {
-            res.status(201).json(result.message);
+            res.status(201).json(result.data);
         } else {
             res.status(400).json(result.message);
         }
