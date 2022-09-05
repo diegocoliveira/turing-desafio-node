@@ -45,6 +45,18 @@ export default class Users {
         const response = await fetch(`http://localhost:8080/api/users/${data.id}`, options);
         if (!response.ok || response.status !== 200) {
             const message = await response.json();
+            console.log(message);
+            throw new Error(message);
+        }
+        const user = await response.json();
+        return user;
+    }
+
+    async deleteById(id) {
+        const options = { method: "DELETE", headers: { "Content-Type": "application/json" } };
+        const response = await fetch(`http://localhost:8080/api/users/${id}`, options);
+        if (!response.ok || response.status !== 200) {
+            const message = await response.json();
             throw new Error(message);
         }
         const user = await response.json();

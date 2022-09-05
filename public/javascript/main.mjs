@@ -1,7 +1,6 @@
 import Users from "./UsersAPI.mjs";
-import {renderTable, setSortedBy} from "./table.mjs";
+import { renderTable, setSortedBy } from "./table.mjs";
 const api = new Users();
-
 
 const modal = document.querySelector("#modal");
 const modalTitle = document.querySelector("#modal-title");
@@ -9,53 +8,24 @@ const alertModal = document.querySelector("#alert-modal");
 const alertMain = document.querySelector("#alert-main");
 const result = document.querySelector("#result");
 
+const txtId = document.querySelector("#txt-id");
+const txtName = document.querySelector("#txt-name");
+const txtEmail = document.querySelector("#txt-email");
+const btnSave = document.querySelector("#btn-save");
+const btnCancel = document.querySelector("#btn-cancel");
+
+const modalQuestion = document.querySelector("#modal-question");
+const divQuestionData = document.querySelector("#question-data");
+const txtDeleteId = document.querySelector("#txt-delete-id");
+const btnOk = document.querySelector("#btn-ok");
+const btnNok = document.querySelector("#btn-nok");
+
 const search = document.querySelector("#search");
-
-const txtId = document.querySelector("#txtId");
-const txtName = document.querySelector("#txtName");
-const txtEmail = document.querySelector("#txtEmail");
-
-const btnSave = document.querySelector("#btnSave");
-const btnCancel = document.querySelector("#btnCancel");
-const btnAdd = document.querySelector("#btnAdd");
-const btnList = document.querySelector("#btnList");
-
-
-
-
-
-
-
-
-
-
-function update(product) {
-    for (let i = 0; i < products.length; i++) {
-        if (products[i].id == product.id) {
-            products[i].nome = product.nome;
-            products[i].valor = product.valor;
-            products[i].descricao = product.descricao;
-            products[i].modificadoEm = Date.now();
-            return true;
-        }
-    }
-    throw "Não foi possível atualizar o produto";
-}
-
-export function remove(id) {
-    let nome = "";
-    for (let i in products) {
-        if (products[i].id == id) {
-            products.splice(i, 1);
-        }
-    }
-    list();
-    console.log("Produto excluído com sucesso!");
-    result.innerHTML = `Produto ${nome} excluído com sucesso!`;
-}
+const btnAdd = document.querySelector("#btn-add");
+const btnList = document.querySelector("#btn-list");
 
 function insert() {
-    txtId.value = "#ID";
+    txtId.value = "";
     txtName.value = "";
     txtEmail.value = "";
     result.innerHTML = "";
@@ -72,6 +42,26 @@ export async function edit(id) {
     openModal(true);
 }
 
+export async function remove(id) {
+    const user = await api.getById(id);
+    txtDeleteId.value = user.id;
+    divQuestionData.innerHTML = `<p>#ID: <span>${user.id}</span> Nome: <span>${user.name}</span> </p> <p>E-mail: <span>${user.email}</span></p>`;
+    openModalAlert(true);
+}
+
+async function deleteById() {
+    const id = txtDeleteId.value;
+    const user = await api.deleteById(id);
+    await list();
+    try {
+        result.innerHTML = `Usuário ${user.id} - ${user.name} excluído com sucesso!`;
+    } catch (error) {
+        result.innerHTML = error.message;
+        console.log(error);
+    }
+    openModalAlert(false);
+}
+
 async function save() {
     alert.innerHTML = "";
     result.innerHTML = "";
@@ -85,7 +75,7 @@ async function save() {
         if (!txtEmail.value.includes("@")) throw new Error("Falha no cadastro do usuário! E-mail inválido. E-mail deve conter @");
         user.email = txtEmail.value;
 
-        if (user.id === "#ID") {
+        if (user.id == "") {
             user = await api.create(user);
             if (user.id > 0) {
                 await list();
@@ -111,7 +101,7 @@ async function list() {
     alertMain.innerHTML = "";
     setSortedBy("");
     const users = await api.get(search.value);
-
+    renderTable(users);
     if (search.value != "") {
         if (users.length <= 0) {
             alertMain.innerHTML = "Não foram encontrados usuários que atenda a pesquisa";
@@ -123,10 +113,7 @@ async function list() {
         alertMain.innerHTML = "Não há usuários cadastrados";
         return;
     }
-    renderTable(users);
 }
-
-
 
 function openModal(open) {
     if (open) {
@@ -138,10 +125,17 @@ function openModal(open) {
     }
 }
 
-
+function openModalAlert(open) {
+    if (open) {
+        modalQuestion.style.display = "flex";
+    } else {
+        modalQuestion.style.display = "none";
+    }
+}
 
 btnSave.onclick = save;
 btnCancel.onclick = () => openModal(false);
 btnAdd.onclick = insert;
 btnList.onclick = list;
-
+btnNok.onclick = () => openModalAlert(false);
+btnOk.onclick = deleteById;

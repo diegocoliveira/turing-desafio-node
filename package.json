@@ -4,7 +4,7 @@
   "description": "desafio trilha servidores turma 3 alphaedtech",
   "main": "./src/server.mjs",
   "scripts": {
-    "start": "nodemon .",
+    "start": "node .",
     "dev": "nodemon .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -24,5 +24,11 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.19"
+    
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "public/*", "database.json"
+    ]
   }
 }

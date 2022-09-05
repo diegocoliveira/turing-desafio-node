@@ -21,7 +21,6 @@ body {
 }
 
 main {
-    /* background-color: #191A2E; */
     background-color: #222;
     margin: 5vh 0;
     width: 70vw;
@@ -37,7 +36,7 @@ main {
 
 .modal {
     position: fixed;
-    background-color: #ffffff99;
+    background-color: #ffffff55;
     top: 0;
     left: 0;
     width: 100vw;
@@ -59,8 +58,20 @@ main {
     gap: 2vh;
 }
 
+#modal-question .modal-content {
+    background-color: #222;
+    border-radius: 1vw;
+    padding: 2vh 0;
+    width: 40vw;
+    min-height: 25vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2vh;
+}
+
 form,
-#product-display {
+#question {
     border: 1px solid #5ed4a2;
     width: 45vw;
     min-height: 30vh;
@@ -70,6 +81,20 @@ form,
     align-items: center;
     border-radius: 1.5vw;
     gap: 2vh;
+}
+
+#question {
+    border: 1px solid #ffab00;
+    width: 38vw;
+    min-height: 20vh;
+}
+
+#question p {
+    color: #ffab00;
+}
+
+#question p span {
+    color: #ddd;
 }
 
 h1 {
@@ -150,18 +175,18 @@ input {
     -moz-appearance: textfield;
 }
 
-#txtId {
+#txt-id {
     width: 3vw;
     color: #ff8700;
     border-bottom-color: #ff8700;
     text-align: center;
 }
 
-#txtName {
+#txt-name {
     width: 30vw;
 }
 
-#txtEmail {
+#txt-email {
     width: 35vw;
 }
 
@@ -203,7 +228,7 @@ p {
     width: 100%;
     text-align: left;
     font-size: 1.5vw;
-    padding: 0 2vw;
+    padding: 0 1vw;
     color: #ddd;
 }
 

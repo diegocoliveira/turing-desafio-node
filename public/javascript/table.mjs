@@ -1,12 +1,12 @@
 import Users from "./UsersAPI.mjs";
-import {remove, edit} from "./main.mjs";
+import { remove, edit } from "./main.mjs";
 const api = new Users();
 
-const table = document.querySelector("#listUsers");
+const table = document.querySelector("#list-users");
 const search = document.querySelector("#search");
 let sortedBy = "";
 
- export function setSortedBy(column) {
+export function setSortedBy(column) {
     sortedBy = column;
 }
 

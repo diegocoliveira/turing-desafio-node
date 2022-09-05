@@ -54,7 +54,7 @@ export default function UserService() {
         }
 
         const user = userDB.add(name, email);
-        console.log("user", user);
+        
         if (user.id > 0) {
             result.success = true;
             result.message = `O usuário ${user.name} foi criado com sucesso com o id ${user.id}`;
