@@ -37,27 +37,28 @@ export default function UserService() {
     
 
     function create(name, email) {
-        const result = { success: false, message: "Erro ao criar usuário" };
+        const result = { success: false, message: "Erro ao criar usuário", data: null };
 
         if (typeof name === "undefined" || name === null || name === "" || typeof email === "undefined" || email === null || email === "") {
             result.message = "Nome e email são obrigatórios";
             return result;
         }
 
-        if (name.length < 5) {
-            result.message = "Nome deve ter no mínimo 5 caracteres";
+        if (name.length < 4) {
+            result.message = "Nome deve ter no mínimo 4 caracteres";
             return result;
         }
-        if (email.length < 5 || !email.includes("@")) {
+        if (email.length < 10 || !email.includes("@")) {
             result.message = "Email inválido";
             return result;
         }
 
         const user = userDB.add(name, email);
-        console.log("user", user);
+        
         if (user.id > 0) {
             result.success = true;
             result.message = `O usuário ${user.name} foi criado com sucesso com o id ${user.id}`;
+            result.data = user;
         }
         return result;
     }
@@ -79,11 +80,11 @@ export default function UserService() {
             return result;
         }
 
-        if (name.length < 5) {
-            result.message = "Nome deve ter no mínimo 5 caracteres";
+        if (name.length < 4) {
+            result.message = "Nome deve ter no mínimo 4 caracteres";
             return result;
         }
-        if (email.length < 5 || !email.includes("@")) {
+        if (email.length < 10 || !email.includes("@")) {
             result.message = "Email inválido";
             return result;
         }

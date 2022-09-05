@@ -41,6 +41,7 @@ export default class UserDB {
     }
 
     getAll() {
+       
         const users = this.#users.filter((user) => !user.deleted);
         return users;
     }

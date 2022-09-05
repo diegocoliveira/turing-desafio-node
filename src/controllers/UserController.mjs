@@ -9,7 +9,7 @@ export default function UserController() {
         const users = service.get(data);
         res.status(200).json(users);
     }
-    
+
     function getById(req, res) {
         const id = req.params.id;
         const result = service.getById(id);
@@ -18,7 +18,6 @@ export default function UserController() {
         } else {
             res.status(400).json({ message: result.message });
         }
-        
     }
 
     function create(req, res) {
@@ -26,7 +25,7 @@ export default function UserController() {
         const result = service.create(data.name, data.email);
 
         if (result.success) {
-            res.status(201).json(result.message);
+            res.status(201).json(result.data);
         } else {
             res.status(400).json(result.message);
         }
