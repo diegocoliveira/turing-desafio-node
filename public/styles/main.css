@@ -1,0 +1,72 @@
+@import url("./modal.css");
+@import url("./button.css");
+@import url("./input.css");
+@import url("./table.css");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    background-color: #222;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Roboto", Courier, monospace;
+}
+
+main {
+    background-color: #222;
+    margin: 5vh 0;
+    width: 70vw;
+    min-height: 90vh;
+    padding: 3vh 3vw;
+    display: flex;
+    gap: 3vh;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    box-shadow: -0.5vw 1vh 2vmax 0.2vmax black;
+}
+
+h1 {
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 3vw;
+    font-weight: 700;
+    color: #222;
+    text-shadow: 0.05vw 0.05vw 0 #5ed4a2, -0.05vw -0.05vw 0px #5ed4a2, 0 0 0.3vw #5ed4a2;
+    letter-spacing: 0.5vw;
+}
+
+h2 {
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 1.8vw;
+    font-weight: 400;
+    color: #5ed4a2;
+    letter-spacing: 0.5vw;
+}
+
+p {
+    width: 100%;
+    text-align: left;
+    font-size: 1.5vw;
+    padding: 0 1vw;
+    color: #ddd;
+}
+
+p strong {
+    color: #5ed4a2;
+}
+
+.alert {
+    color: #ff9729;
+    font-size: 1.2vw;
+}
+
+#result {
+    color: #5ed4a2;
+    font-size: 1.2vw;
+}

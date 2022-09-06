@@ -1,0 +1,48 @@
+.comandos {
+    display: flex;
+    justify-content: center;
+    gap: 2vw;
+}
+
+.btn-primary {
+    width: 10vw;
+    height: 5vh;
+    color: #ff8700;
+    font-family: "Roboto";
+    font-size: 1.2vmax;
+    font-weight: 700;
+    background-color: transparent;
+    border-style: 1px solid;
+    border-color: #ffab00;
+    border-radius: 5vw;
+    cursor: pointer;
+    transition: background 0.5s;
+}
+
+.btn-primary:hover {
+    background-color: #5ed4a2;
+    color: #191a2e;
+    border-color: #191a2e;
+}
+
+.btn-alternate {
+    width: 10vw;
+    height: 5vh;
+    color: #ff8700;
+    font-family: "Roboto";
+    font-size: 1.2vmax;
+    font-weight: 400;
+    background-color: transparent;
+    border: 0 solid;
+    border-bottom-width: 1px;
+    border-color: #ffab00;
+    border-radius: 5vw;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-alternate:hover {
+    background-color: #5ed4a2;
+    color: #191a2e;
+    border-color: #191a2e;
+}
