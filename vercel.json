@@ -1,14 +1,2 @@
-{
-  "builds": [
-      {
-          "src": "/src/server.mjs",
-          "use": "@vercel/node"
-      }
-  ],
-  "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "/src/server.mjs"
-      }
-  ]
+{ "source": "/api/(.*)", "destination": "/src/server.mjs"
 }
