@@ -1,10 +1,12 @@
+import dotenv from "dotenv";
 import Express from "express";
 import UserRouter from "./routers/UserRouter.mjs";
 
+dotenv.config();
 
 const app = Express();
 const router = UserRouter(Express);
-const port = 8080;
+const port = process.env.PORT || 8080;
 
 app.use(Express.json());
 app.use(Express.urlencoded({ extended: true }));
@@ -19,24 +21,23 @@ app.use(function (req, res, next) {
         <body>... </body> </html>`;
 
     res.status(404);
-     const contentType = req.get('Content-Type');
+    const contentType = req.get("Content-Type");
 
-     // response with json
-    if (req.get('Content-Type') === 'application/json') {
+    // response with json
+    if (req.get("Content-Type") === "application/json") {
         res.json({ error: "Not found" });
         return;
     }
-     // response with html page
-     if (req.accepts("html")) {
+    // response with html page
+    if (req.accepts("html")) {
         res.send(html);
         return;
     }
 
     // default to plain-text. send()
     res.type("txt").send("Not found");
-
 });
 
 app.listen(port, () => {
-    console.log(`Servidor criado: http://localhost:${port}`);
+    console.log(`Servidor criado no ambiente:${process.env.NODE_ENV} na porta:${port}`);
 });

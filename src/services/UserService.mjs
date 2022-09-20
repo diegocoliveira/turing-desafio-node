@@ -2,6 +2,7 @@ import UserDB from "../database/UserDB.mjs";
 
 export default function UserService() {
     const userDB = new UserDB();
+    userDB.init();
 
     function get(data) {
         if (typeof data === "undefined" || data === null || data === "") {

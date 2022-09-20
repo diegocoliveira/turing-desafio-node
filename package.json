@@ -19,16 +19,17 @@
   },
   "homepage": "https://github.com/diegocoliveira/turing-desafio-node#readme",
   "dependencies": {
+    "dotenv": "^16.0.2",
     "express": "^4.18.1",
     "fs.promises.exists": "^1.1.3"
   },
   "devDependencies": {
     "nodemon": "^2.0.19"
-    
   },
   "nodemonConfig": {
     "ignore": [
-      "public/*", "database.json"
+      "public/*",
+      "database.json"
     ]
   }
 }

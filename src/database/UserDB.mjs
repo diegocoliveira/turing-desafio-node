@@ -1,16 +1,14 @@
 import fs from "fs/promises";
 import fsExists from "fs.promises.exists";
 import User from "../model/User.mjs";
+import dotenv from "dotenv";
+dotenv.config();
 
 export default class UserDB {
-    #users;
+    #users = [];
     #dataFile;
 
-    constructor() {
-        this.#load();
-    }
-
-    async #load() {
+    async init() {
         try {
             this.#dataFile = new URL("database.json", import.meta.url);
             const exists = await fsExists(this.#dataFile);
@@ -41,7 +39,6 @@ export default class UserDB {
     }
 
     getAll() {
-       
         const users = this.#users.filter((user) => !user.deleted);
         return users;
     }
@@ -73,10 +70,12 @@ export default class UserDB {
     }
 
     async #writeFile() {
-        try {
-            fs.writeFile(this.#dataFile, JSON.stringify(this.#users));
-        } catch (error) {
-            console.log("Erro ao escrever no database" + err);
+        if (process.env.NODE_ENV != "vercel") {
+            try {
+                fs.writeFile(this.#dataFile, JSON.stringify(this.#users));
+            } catch (error) {
+                console.log("Erro ao escrever no database" + err);
+            }
         }
     }
 }
