@@ -13,7 +13,10 @@
     
     "routes":[
         { "handle": "filesystem" },
-        { "src": "/(.*)", "status": 404, "dest": "/other-404.html" },
+        {   "src": "/(.*)",
+            "status": 404,
+            "dest": "public/404/index.html" 
+        },
         {
             "src": "/api/(.*)",
             "dest": "src/server.mjs"
