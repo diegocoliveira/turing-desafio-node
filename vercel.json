@@ -13,10 +13,6 @@
     
     "routes":[
         { "handle": "filesystem" },
-        {   "src": "/(.*)",
-            "status": 404,
-            "dest": "public/404/index.html" 
-        },
         {
             "src": "/api/(.*)",
             "dest": "src/server.mjs"
@@ -28,6 +24,10 @@
         {
             "src": "/(.+)",
             "dest": "public/$1"
+        },
+        {   "src": "/(.*)",
+            "status": 404,
+            "dest": "public/404/index.html" 
         }
     ]
 }
