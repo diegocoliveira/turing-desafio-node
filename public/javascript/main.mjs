@@ -133,6 +133,8 @@ function openModalAlert(open) {
     }
 }
 
+list();
+
 btnSave.onclick = save;
 btnCancel.onclick = () => openModal(false);
 btnAdd.onclick = insert;

@@ -3,14 +3,10 @@ import fsExists from "fs.promises.exists";
 import User from "../model/User.mjs";
 
 export default class UserDB {
-    #users;
+    #users = [];
     #dataFile;
 
-    constructor() {
-        this.#load();
-    }
-
-    async #load() {
+    async init() {
         try {
             this.#dataFile = new URL("database.json", import.meta.url);
             const exists = await fsExists(this.#dataFile);
