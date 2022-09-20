@@ -1,1 +1,1 @@
-[{"id":1,"name":"Teste","email":"teste@teste.com.br","deleted":false},{"id":2,"name":"TesteExcluido","email":"teste2@teste.com.br","deleted":true}]
+[{"id":1,"name":"Teste","email":"teste@teste.com.br","deleted":false},{"id":2,"name":"TesteExcluido","email":"teste2@teste.com.br","deleted":true},{"id":3,"name":"teste 2","email":"teste2@empresa.com.br","deleted":false}]
