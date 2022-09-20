@@ -19,15 +19,15 @@
         },
         {
             "src": "/javascript/(.+)",
-            "dest": "public/$1"
+            "dest": "public/javascript/$1"
         },
         {
             "src": "/styles/(.+)",
-            "dest": "public/$1"
+            "dest": "public/styles/$1"
         },
         {
             "src": "/404/(.+)",
-            "dest": "public/$1"
+            "dest": "public/404/$1"
         },
         {
             "src": "/(.*)",
