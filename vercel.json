@@ -18,6 +18,10 @@
             "dest": "public/index.html"
         },
         {
+            "src": "/index.html",
+            "dest": "public/index.html"
+        },
+        {
             "src": "/javascript/(.+)",
             "dest": "public/javascript/$1"
         },
