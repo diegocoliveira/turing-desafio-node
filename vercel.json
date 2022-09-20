@@ -18,8 +18,16 @@
             "dest": "public/index.html"
         },
         {
-            "src": "/api/(.*)",
-            "dest": "src/server.mjs"
+            "src": "/javascript/(.+)",
+            "dest": "public/$1"
+        },
+        {
+            "src": "/styles/(.+)",
+            "dest": "public/$1"
+        },
+        {
+            "src": "/404/(.+)",
+            "dest": "public/$1"
         },
         {
             "src": "/(.*)",
