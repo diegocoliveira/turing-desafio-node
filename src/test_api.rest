@@ -1,0 +1,30 @@
+POST http://localhost:8080/api/users HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Sheila Melo", "email": "sheila.melo@gmail.com"
+}
+
+###
+
+GET http://localhost:8080/api/users/5 HTTP/1.1
+Content-Type: application/json
+
+###
+
+GET http://localhost:8080/api/users HTTP/1.1
+Content-Type: application/json
+
+###
+
+PUT http://localhost:8080/api/users/5 HTTP/1.1 
+Content-Type: application/json
+
+{
+    "name":"usuario_05", "email": "usuario5@empresa.com" 
+}
+
+###
+
+DELETE http://localhost:8080/api/users/5 HTTP/1.1
+
